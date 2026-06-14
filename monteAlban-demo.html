@@ -1,0 +1,1606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monte Alban Restaurante Mexicano | Andrews, NC</title>
+  <meta name="description" content="Modern restaurant website concept for Monte Alban Restaurante Mexicano in Andrews, NC with online ordering, menu browsing, specials, and contact details." />
+  <style>
+    :root {
+      --ink: #211815;
+      --muted: #735d54;
+      --paper: #fff8ef;
+      --paper-2: #fff2df;
+      --brand: #bd2d20;
+      --brand-2: #f06f2d;
+      --gold: #f4b942;
+      --green: #266b4a;
+      --line: rgba(33, 24, 21, .14);
+      --shadow: 0 24px 80px rgba(57, 21, 8, .16);
+      --radius: 26px;
+      --radius-sm: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(244,185,66,.32), transparent 26rem),
+        radial-gradient(circle at 90% 18%, rgba(189,45,32,.16), transparent 27rem),
+        linear-gradient(180deg, #fff8ef, #fff4e8 48%, #fff8ef);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .announcement {
+      background: #211815;
+      color: #fff8ef;
+      font-size: .88rem;
+      text-align: center;
+      padding: .65rem 1rem;
+    }
+
+    .announcement strong { color: var(--gold); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 248, 239, .84);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: .85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1;
+      min-width: max-content;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, var(--brand), var(--brand-2)),
+        var(--brand);
+      box-shadow: 0 12px 24px rgba(189, 45, 32, .25);
+      font-weight: 950;
+    }
+
+    .logo small {
+      display: block;
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: .25rem;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .nav-links a {
+      padding: .65rem .8rem;
+      border-radius: 999px;
+      color: rgba(33, 24, 21, .78);
+      font-weight: 750;
+      font-size: .94rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(189,45,32,.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: .85rem 1.1rem;
+      font-weight: 850;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      min-height: 44px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #fffaf3;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 14px 32px rgba(189, 45, 32, .28);
+    }
+    .btn-secondary {
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 28px rgba(57, 21, 8, .08);
+    }
+    .btn-dark {
+      color: #fff8ef;
+      background: #211815;
+    }
+    .btn-ghost {
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid rgba(33,24,21,.18);
+    }
+
+    .cart-btn {
+      position: relative;
+      min-width: 46px;
+      padding-inline: .9rem;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -4px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 .35rem;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-size: .75rem;
+      border: 2px solid var(--paper);
+    }
+
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 4.4rem 1.25rem 2.4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+      gap: 2.3rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      color: var(--brand);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .75rem;
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: var(--brand);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.9rem);
+      letter-spacing: -.075em;
+      line-height: .86;
+      margin-bottom: 1.35rem;
+    }
+
+    .accent-word {
+      display: inline-block;
+      color: var(--brand);
+      position: relative;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .85rem;
+      max-width: 660px;
+    }
+
+    .meta-card {
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(57,21,8,.06);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: .15rem;
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 550px;
+    }
+
+    .plate {
+      position: absolute;
+      inset: 3rem 1rem auto auto;
+      width: min(92%, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #ffe8c6 0 19%, #f6c16e 19% 20%, transparent 20%),
+        radial-gradient(circle at 32% 44%, #a82019 0 10%, transparent 10.5%),
+        radial-gradient(circle at 68% 48%, #2c8051 0 9%, transparent 9.5%),
+        radial-gradient(circle at 52% 65%, #f06f2d 0 12%, transparent 12.5%),
+        radial-gradient(circle at 50% 50%, #fff7e7 0 53%, #ebd4b5 54% 61%, #fff3db 62% 69%, transparent 70%);
+      filter: drop-shadow(0 36px 60px rgba(57,21,8,.22));
+      transform: rotate(-10deg);
+    }
+
+    .plate::before {
+      content: "";
+      position: absolute;
+      inset: 20%;
+      border-radius: 50%;
+      background:
+        linear-gradient(45deg, transparent 0 42%, rgba(33,24,21,.09) 43% 46%, transparent 47%),
+        radial-gradient(circle at 25% 35%, #c63c28 0 8%, transparent 9%),
+        radial-gradient(circle at 68% 28%, #2d7a50 0 7%, transparent 8%),
+        radial-gradient(circle at 51% 70%, #f8d68a 0 12%, transparent 13%),
+        radial-gradient(circle, #fff1db, #ffe0b7);
+      box-shadow: inset 0 0 0 18px rgba(255,255,255,.48);
+    }
+
+    .tile {
+      position: absolute;
+      border-radius: var(--radius-sm);
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: .9rem 1rem;
+      box-shadow: var(--shadow);
+      max-width: 230px;
+    }
+
+    .tile strong { display:block; margin-bottom:.15rem; }
+    .tile span { color: var(--muted); font-size:.9rem; }
+    .tile-1 { left: 0; top: 1rem; transform: rotate(-3deg); }
+    .tile-2 { right: 0; bottom: 2rem; transform: rotate(4deg); }
+    .tile-3 { left: 1rem; bottom: 7rem; transform: rotate(-4deg); }
+
+
+    .photo-frame {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.42);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: .75rem .85rem;
+      border-radius: 16px;
+      color: #fff8ef;
+      background: rgba(33, 24, 21, .72);
+      backdrop-filter: blur(10px);
+      font-weight: 850;
+      font-size: .92rem;
+    }
+
+    .hero-photo-main {
+      position: absolute;
+      inset: 1.4rem 0 auto auto;
+      width: min(92%, 520px);
+      height: 410px;
+      transform: rotate(-3deg);
+    }
+
+    .hero-photo-side {
+      position: absolute;
+      width: 230px;
+      height: 180px;
+      left: 0;
+      bottom: 2.6rem;
+      transform: rotate(4deg);
+    }
+
+    .hero-photo-menu {
+      position: absolute;
+      width: 220px;
+      height: 280px;
+      right: 0;
+      bottom: 0;
+      transform: rotate(-2deg);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .85fr .85fr;
+      gap: 1rem;
+    }
+
+    .gallery-card {
+      min-height: 240px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(57,21,8,.08);
+    }
+
+    .gallery-card.tall {
+      grid-row: span 2;
+      min-height: 500px;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card .photo-caption {
+      color: var(--ink);
+      background: rgba(255,248,239,.86);
+      border: 1px solid rgba(33,24,21,.08);
+    }
+
+    .dish-top img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .dish-top::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(33,24,21,.45));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .dish-top::after {
+      z-index: 2;
+    }
+
+    .pattern {
+      height: 18px;
+      background:
+        linear-gradient(45deg, transparent 35%, rgba(189,45,32,.3) 36% 39%, transparent 40%),
+        linear-gradient(-45deg, transparent 35%, rgba(38,107,74,.26) 36% 39%, transparent 40%);
+      background-size: 26px 18px;
+      opacity: .8;
+    }
+
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 4rem 1.25rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.6vw, 4rem);
+      letter-spacing: -.06em;
+      line-height: .94;
+      margin-bottom: .55rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .feature-card {
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 42px rgba(57,21,8,.08);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(189,45,32,.11);
+      color: var(--brand);
+      font-size: 1.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 { margin-bottom: .45rem; font-size: 1.18rem; }
+    .feature-card p { color: var(--muted); margin: 0; }
+
+    .order-panel {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .order-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #211815;
+      color: #fff8ef;
+      min-height: 440px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .order-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(240,111,45,.55);
+      filter: blur(8px);
+    }
+
+    .order-card h2 { color: #fff; }
+    .order-card p { color: rgba(255,248,239,.74); }
+    .order-steps {
+      display: grid;
+      gap: .9rem;
+      margin-top: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: .8rem;
+      align-items: start;
+      padding: .9rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .step-num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 950;
+    }
+
+    .mini-menu {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: 0 18px 42px rgba(57,21,8,.08);
+    }
+
+    .order-types {
+      display: flex;
+      gap: .55rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: .62rem .82rem;
+      border-radius: 999px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .chip.active {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .featured-list {
+      display: grid;
+      gap: .8rem;
+      max-height: 368px;
+      overflow: auto;
+      padding-right: .2rem;
+    }
+
+    .featured-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: .85rem;
+      border-radius: 18px;
+      background: var(--paper);
+      border: 1px solid rgba(33,24,21,.08);
+    }
+
+    .featured-item h4 {
+      margin: 0 0 .18rem;
+      font-size: .98rem;
+    }
+
+    .featured-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .price { font-weight: 950; color: var(--green); white-space: nowrap; }
+    .add-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 950;
+      box-shadow: 0 10px 18px rgba(189,45,32,.22);
+    }
+
+    .menu-toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: .9rem 1rem;
+      outline: none;
+      box-shadow: 0 12px 30px rgba(57,21,8,.06);
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: .5rem;
+      overflow: auto;
+      padding: .2rem 0 1rem;
+      margin-bottom: 1rem;
+      scrollbar-width: thin;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .menu-item {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      display: grid;
+      gap: .85rem;
+      box-shadow: 0 18px 42px rgba(57,21,8,.07);
+    }
+
+    .dish-top {
+      min-height: 120px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 22% 34%, rgba(189,45,32,.8) 0 11%, transparent 12%),
+        radial-gradient(circle at 68% 42%, rgba(38,107,74,.84) 0 10%, transparent 11%),
+        radial-gradient(circle at 45% 68%, rgba(244,185,66,.9) 0 14%, transparent 15%),
+        radial-gradient(circle at 52% 50%, rgba(255,248,239,.88) 0 42%, transparent 43%),
+        linear-gradient(135deg, rgba(189,45,32,.16), rgba(240,111,45,.24));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dish-top::after {
+      content: attr(data-category);
+      position: absolute;
+      left: .75rem;
+      bottom: .75rem;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(33,24,21,.08);
+      padding: .35rem .55rem;
+      border-radius: 999px;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 950;
+      color: var(--brand);
+    }
+
+    .menu-item h3 { margin: 0; font-size: 1.1rem; letter-spacing: -.025em; }
+    .menu-item p { color: var(--muted); margin: 0; font-size: .92rem; min-height: 2.7em; }
+    .menu-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: .8rem;
+      align-items: center;
+      border-top: 1px dashed var(--line);
+      padding-top: .85rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .6rem;
+    }
+
+    .badge {
+      padding: .35rem .55rem;
+      background: rgba(38,107,74,.1);
+      color: var(--green);
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 900;
+    }
+
+    .location-card {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 1rem;
+      background: #211815;
+      color: #fff8ef;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .location-copy {
+      padding: 2rem;
+    }
+
+    .location-copy p { color: rgba(255,248,239,.78); }
+    .hours {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .45rem .9rem;
+      padding: 1rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      margin: 1rem 0;
+      max-width: 540px;
+    }
+
+    .map-panel {
+      min-height: 420px;
+      background:
+        linear-gradient(135deg, rgba(244,185,66,.8), rgba(189,45,32,.64)),
+        radial-gradient(circle at 28% 42%, rgba(255,255,255,.7), transparent 7rem),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 1px, transparent 1px 16px);
+      position: relative;
+    }
+
+    .map-pin {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 84px;
+      height: 84px;
+      border-radius: 50% 50% 50% 0;
+      background: #fff8ef;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      box-shadow: 0 20px 50px rgba(33,24,21,.25);
+      display: grid;
+      place-items: center;
+    }
+
+    .map-pin::after {
+      content: "MA";
+      transform: rotate(45deg);
+      color: var(--brand);
+      font-weight: 950;
+      font-size: 1.2rem;
+    }
+
+    .map-label {
+      position: absolute;
+      left: 2rem;
+      right: 2rem;
+      bottom: 2rem;
+      padding: 1rem;
+      background: rgba(255,248,239,.88);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      color: var(--ink);
+      border: 1px solid rgba(33,24,21,.08);
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(33,24,21,.38);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+      z-index: 50;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(440px, 100%);
+      height: 100dvh;
+      background: #fff8ef;
+      z-index: 60;
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      box-shadow: -20px 0 60px rgba(33,24,21,.22);
+    }
+
+    body.cart-open .drawer { transform: translateX(0); }
+    body.cart-open .drawer-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-head {
+      padding: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .drawer-head h3 { margin: 0; }
+
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-weight: 950;
+    }
+
+    .cart-items {
+      padding: 1rem;
+      overflow: auto;
+      display: grid;
+      gap: .75rem;
+      align-content: start;
+    }
+
+    .cart-line {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: .85rem;
+      display: grid;
+      gap: .6rem;
+    }
+
+    .cart-line-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-weight: 900;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .7rem;
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+
+    .qty-control button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      cursor: pointer;
+      font-weight: 950;
+    }
+
+    .checkout {
+      border-top: 1px solid var(--line);
+      padding: 1rem;
+      background: rgba(255,255,255,.68);
+    }
+
+    .field {
+      display: grid;
+      gap: .35rem;
+      margin-bottom: .7rem;
+    }
+
+    .field label {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .field input, .field textarea, .field select {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .75rem .85rem;
+      background: #fff;
+      outline: none;
+      width: 100%;
+    }
+
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.08rem;
+      font-weight: 950;
+      margin: .75rem 0;
+    }
+
+    .empty-cart {
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.2rem;
+      transform: translateX(-50%) translateY(18px);
+      opacity: 0;
+      background: #211815;
+      color: #fff8ef;
+      border-radius: 999px;
+      padding: .85rem 1rem;
+      font-weight: 850;
+      box-shadow: 0 18px 42px rgba(33,24,21,.24);
+      z-index: 80;
+      transition: .25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-top: 1rem;
+    }
+
+    .mobile-order { display: none; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 3.2rem;
+      }
+      .hero-visual { min-height: 420px; }
+      .plate { inset: 1rem 2rem auto auto; width: min(92%, 420px); }
+      .hero-meta, .feature-grid, .menu-grid { grid-template-columns: 1fr 1fr; }
+      .order-panel, .location-card { grid-template-columns: 1fr; }
+
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-card.tall { grid-row: span 1; min-height: 360px; }
+      .map-panel { min-height: 320px; }
+    }
+
+    @media (max-width: 640px) {
+      .announcement { font-size: .78rem; }
+      .logo small { display: none; }
+      .nav-actions .btn-secondary { display: none; }
+      .hero { padding-top: 2.4rem; }
+      h1 { font-size: clamp(3.1rem, 18vw, 4.7rem); }
+      .hero-meta, .feature-grid, .menu-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card, .gallery-card.tall { min-height: 300px; }
+      .section-head { display: block; }
+      .menu-toolbar { grid-template-columns: 1fr; }
+      .mobile-order {
+        display: inline-flex;
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 30;
+      }
+      section { padding-block: 3rem; }
+      .location-copy { padding: 1.2rem; }
+      .hours { font-size: .9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">
+    <strong>Prototype concept:</strong> Online ordering, mobile menu, pickup flow, and local restaurant branding in one modern site.
+  </div>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="Monte Alban home">
+        <span class="logo-mark">MA</span>
+        <span>Monte Alban<small>Restaurante Mexicano</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#order">Order Online</a>
+        <a href="#photos">Photos</a>
+        <a href="#specials">Specials</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="tel:+18283211802">Call</a>
+        <button class="btn btn-primary cart-btn" id="openCart" type="button" aria-label="Open cart">
+          Cart <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div>
+        <span class="eyebrow">Andrews, North Carolina</span>
+        <h1>Fresh Mexican food, ready for <span class="accent-word">pickup.</span></h1>
+        <p class="hero-copy">
+          A modern website concept for Monte Alban that makes the restaurant easier to find,
+          easier to browse, and easier to order from on a phone.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#order">Start an order</a>
+          <a class="btn btn-secondary" href="#menu">View menu</a>
+        </div>
+        <div class="hero-meta" aria-label="Restaurant quick facts">
+          <div class="meta-card">
+            <strong>11 AM – 9 PM</strong>
+            <span>Open most days</span>
+          </div>
+          <div class="meta-card">
+            <strong>Takeout ready</strong>
+            <span>Simple cart flow</span>
+          </div>
+          <div class="meta-card">
+            <strong>498 Main St</strong>
+            <span>Downtown Andrews</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Monte Alban food photos">
+        <div class="photo-frame hero-photo-main">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/3.jpg" alt="Monte Alban grilled steak, rice, chile relleno, and enchilada plate" loading="eager">
+          <div class="photo-caption">Real Monte Alban plate photo</div>
+        </div>
+        <div class="photo-frame hero-photo-side">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/2.jpg" alt="Monte Alban shrimp fajitas with peppers and onions" loading="lazy">
+        </div>
+        <div class="photo-frame hero-photo-menu">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-2.jpg" alt="Monte Alban printed menu showing fajitas and specialties" loading="lazy">
+        </div>
+        <div class="tile tile-1"><strong>Popular tonight</strong><span>Fajitas, enchiladas, tacos, pollo fundido.</span></div>
+      </div>
+    </header>
+
+    <div class="pattern" aria-hidden="true"></div>
+
+    <section id="specials">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Why this pitch works</span>
+          <h2>Built to turn searches into orders.</h2>
+        </div>
+        <p>
+          The goal is not just a nicer design. It is a practical restaurant site that helps customers pick food,
+          call, get directions, and place pickup orders without hunting through social media or menu photos.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">☑</div>
+          <h3>Mobile-first menu</h3>
+          <p>Customers can search, filter by category, and add items to cart from one clean page.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🛍</div>
+          <h3>Online ordering</h3>
+          <p>Pickup orders collect customer details, notes, quantities, and order totals.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h3>Local visibility</h3>
+          <p>Clear phone, hours, address, directions, and structured content improve trust and usability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="photos">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Real photos</span>
+          <h2>Restaurant images, not generic stock.</h2>
+        </div>
+        <p>
+          This version uses public Monte Alban food and menu photos so the pitch feels specific to the actual restaurant.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-card tall">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-2.jpg" alt="Monte Alban menu page with fajitas and specialties" loading="lazy">
+          <figcaption class="photo-caption">Fajitas and house specialties menu page</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/2.jpg" alt="Monte Alban shrimp fajitas" loading="lazy">
+          <figcaption class="photo-caption">Shrimp fajitas</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/3.jpg" alt="Monte Alban plate with steak, rice, chile relleno, and enchilada" loading="lazy">
+          <figcaption class="photo-caption">House plate photo</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg" alt="Monte Alban menu page with appetizers, dips, salads, and quesadillas" loading="lazy">
+          <figcaption class="photo-caption">Appetizers, dips, and quesadillas</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg" alt="Monte Alban menu page with fajitas, seafood, beef, desserts, and soft drinks" loading="lazy">
+          <figcaption class="photo-caption">Fajitas, seafood, beef, and desserts</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="order-panel">
+        <div class="order-card">
+          <span class="eyebrow">Order online</span>
+          <h2>Simple pickup flow customers understand.</h2>
+          <p>
+            This prototype lets customers add menu items, review their cart, enter pickup details,
+            and submit a pickup order. It can later connect to Square, Toast, Clover, Stripe, Resend, Twilio, or a custom Cloudflare backend.
+          </p>
+          <div class="order-steps">
+            <div class="order-step"><span class="step-num">1</span><div><strong>Choose food</strong><br><span>Browse featured items or the full menu below.</span></div></div>
+            <div class="order-step"><span class="step-num">2</span><div><strong>Add pickup info</strong><br><span>Name, phone, pickup time, and notes.</span></div></div>
+            <div class="order-step"><span class="step-num">3</span><div><strong>Restaurant receives order</strong><br><span>Can route to email, SMS, printer, or POS integration.</span></div></div>
+          </div>
+        </div>
+
+        <aside class="mini-menu" aria-label="Featured order items">
+          <div class="section-head" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="margin:0;">Featured for ordering</h3>
+              <p style="margin:.2rem 0 0; color:var(--muted);">Fast picks from popular menu categories.</p>
+            </div>
+          </div>
+          <div class="order-types" id="orderTypeButtons">
+            <button class="chip active" data-type="Pickup">Pickup</button>
+            <button class="chip" data-type="Dine-in">Dine-in note</button>
+            <button class="chip" data-type="Catering">Catering inquiry</button>
+          </div>
+          <div class="featured-list" id="featuredList"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Menu</span>
+          <h2>Classics, specialties, lunch, and desserts.</h2>
+        </div>
+        <p>
+          This prototype uses publicly available menu information and should be verified with the restaurant before launch.
+          Prices can be updated from one menu data file.
+        </p>
+      </div>
+
+      <div class="menu-toolbar">
+        <input class="search" id="menuSearch" type="search" placeholder="Search tacos, fajitas, queso, chicken..." aria-label="Search menu" />
+        <button class="btn btn-dark" type="button" id="clearSearch">Clear</button>
+      </div>
+
+      <div class="category-tabs" id="categoryTabs" aria-label="Menu categories"></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section id="visit">
+      <div class="location-card">
+        <div class="location-copy">
+          <span class="eyebrow">Visit Monte Alban</span>
+          <h2>Right on Main Street in Andrews.</h2>
+          <p>
+            A restaurant website should make the next action obvious: call, order, get directions, or check hours.
+          </p>
+
+          <div class="hours" aria-label="Business hours">
+            <span>Monday – Thursday</span><strong>11:00 AM – 9:00 PM</strong>
+            <span>Friday – Saturday</span><strong>11:00 AM – 9:30 PM</strong>
+            <span>Sunday</span><strong>11:00 AM – 9:00 PM</strong>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+18283211802">Call (828) 321-1802</a>
+            <a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=498%20Main%20St%2C%20Andrews%2C%20NC%2028901">Get directions</a>
+          </div>
+          <p class="note">Address: 498 Main St, Andrews, NC 28901</p>
+        </div>
+        <div class="map-panel" aria-hidden="true">
+          <div class="map-pin"></div>
+          <div class="map-label"><strong>Monte Alban Restaurante Mexicano</strong><br>498 Main St, Andrews, NC 28901</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="btn btn-primary mobile-order" id="mobileCart" type="button">Open cart <span class="cart-count" id="mobileCartCount">0</span></button>
+
+  <div class="drawer-backdrop" id="cartBackdrop"></div>
+  <aside class="drawer" aria-label="Order cart" aria-hidden="true" id="cartDrawer">
+    <div class="drawer-head">
+      <h3>Your order</h3>
+      <button class="close-btn" type="button" id="closeCart" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <form class="checkout" id="checkoutForm">
+      <div class="field">
+        <label for="customerName">Name</label>
+        <input id="customerName" name="customerName" placeholder="Customer name" required />
+      </div>
+      <div class="field">
+        <label for="customerPhone">Phone</label>
+        <input id="customerPhone" name="customerPhone" placeholder="Phone number" required />
+      </div>
+      <div class="field">
+        <label for="pickupTime">Pickup time</label>
+        <select id="pickupTime" name="pickupTime">
+          <option>ASAP</option>
+          <option>15 minutes</option>
+          <option>30 minutes</option>
+          <option>45 minutes</option>
+          <option>1 hour</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="orderNotes">Order notes</label>
+        <textarea id="orderNotes" name="orderNotes" rows="2" placeholder="Extra salsa, no onions, etc."></textarea>
+      </div>
+      <div class="total-row">
+        <span>Estimated subtotal</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width: 100%;">Submit pickup order</button>
+      <p class="note">Demo checkout: creates an order confirmation on-screen. Production version would send this to the restaurant.</p>
+    </form>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Monte Alban Restaurante Mexicano — website concept</span>
+    <span>Built for online ordering, local search, and mobile customers.</span>
+  </footer>
+
+  <script>
+    const phone = "828-321-1802";
+    const menuItems = [
+      { id: "cheese-dip", category: "Dips", name: "Cheese Dip", description: "Classic warm cheese dip. Regular or large size available.", price: 3.49, featured: true, tags: ["Popular", "Starter"] },
+      { id: "guacamole-dip", category: "Dips", name: "Guacamole Dip", description: "Fresh guacamole dip for chips or sides.", price: 3.25, featured: false, tags: ["Vegetarian"] },
+      { id: "chori-cheese", category: "Dips", name: "Chori-Cheese Dip", description: "Mexican sausage with melted cheese.", price: 5.49, featured: true, tags: ["Popular"] },
+      { id: "nachos-supreme", category: "Appetizers", name: "Nachos Supreme", description: "Nachos with beef, lettuce, tomato, sour cream, and guacamole.", price: 8.99, featured: true, tags: ["Shareable"] },
+      { id: "nachos-fajita", category: "Appetizers", name: "Nachos Fajita", description: "Nachos topped with chicken or beef fajita-style.", price: 9.99, featured: false, tags: ["Shareable"] },
+      { id: "fajita-taco-salad", category: "Salads", name: "Fajita Taco Salad", description: "Fajita-style chicken or beef with beans, lettuce, tomato, sour cream, and guacamole.", price: 8.99, featured: false, tags: ["Fresh"] },
+      { id: "ensalada-camaron", category: "Salads", name: "Ensalada de Camarón", description: "Grilled shrimp served over lettuce, cheese, onion, peppers, and tomato.", price: 10.49, featured: false, tags: ["Seafood"] },
+      { id: "quesadilla-vaquero", category: "Quesadillas", name: "Quesadilla Vaquero", description: "Large quesadilla with grilled shrimp, chicken, steak, onions, and peppers.", price: 15.99, featured: true, tags: ["Loaded"] },
+      { id: "quesadilla-fajita", category: "Quesadillas", name: "Quesadilla Fajita", description: "Quesadilla with fajita-style grilled chicken or steak.", price: 9.99, featured: false, tags: ["Favorite"] },
+      { id: "lunch-speedy", category: "Lunch", name: "Speedy Gonzales", description: "One taco, one enchilada, rice or beans. Lunch only.", price: 8.25, featured: false, tags: ["Lunch"] },
+      { id: "lunch-chimichanga", category: "Lunch", name: "Lunch Chimichanga", description: "Shredded chicken or beef with fried beans, rice, and guacamole salad.", price: 9.99, featured: true, tags: ["Lunch"] },
+      { id: "lunch-fajitas", category: "Lunch", name: "Lunch Fajitas", description: "Steak or chicken, served with rice, beans, salad, and tortillas.", price: 11.49, featured: true, tags: ["Lunch"] },
+      { id: "huevos-rancheros", category: "Lunch", name: "Huevos Rancheros", description: "Ranch-style eggs with sauce, rice, beans, and tortillas.", price: 8.49, featured: false, tags: ["Lunch"] },
+      { id: "fajitas-chicken", category: "Fajitas", name: "Steak or Chicken Fajitas", description: "Grilled with onions, green peppers, and served sizzling with rice, beans, salad, and tortillas.", price: 16.99, featured: true, tags: ["Sizzling"] },
+      { id: "fajitas-vaquero", category: "Fajitas", name: "Fajitas Vaquero", description: "Tender steak, chicken, shrimp, and mushrooms.", price: 18.99, featured: true, tags: ["House pick"] },
+      { id: "fajitas-camaron", category: "Fajitas", name: "Fajitas de Camarón", description: "Shrimp fajitas with peppers and onions.", price: 20.99, featured: false, tags: ["Seafood"] },
+      { id: "fajitas-vegetarianas", category: "Fajitas", name: "Fajitas Vegetarianas", description: "Vegetarian fajitas served with classic sides.", price: 11.25, featured: false, tags: ["Vegetarian"] },
+      { id: "especial-monte-alban", category: "Fajitas", name: "Especial Monte Alban", description: "Chicken, steak, shrimp, pork, and chorizo. Built for two.", price: 28.99, featured: true, tags: ["For two"] },
+      { id: "chargrilled-chicken", category: "Specialties", name: "Char-Grilled Chicken", description: "Sweetened vegetables, nacho cheese, and rice.", price: 15.49, featured: true, tags: ["House specialty"] },
+      { id: "arrachera", category: "Specialties", name: "Arrachera", description: "Skirt steak with poblano pepper, chicken, cheese, enchilada sauce, and rice.", price: 16.99, featured: true, tags: ["House specialty"] },
+      { id: "burrito-percheron", category: "Specialties", name: "Burrito Percheron", description: "Large tortilla filled with beef, chicken, rice, beans, lettuce, pico, cheese, sour cream, and guacamole.", price: 13.99, featured: false, tags: ["Burrito"] },
+      { id: "pancho-special", category: "Specialties", name: "Pancho Special", description: "Grilled chicken, shrimp, and onions topped with shredded cheese.", price: 15.99, featured: true, tags: ["Favorite"] },
+      { id: "chori-papas", category: "Specialties", name: "Chori-Papas", description: "Homemade potato chips, steak, chorizo, grilled onions, and nacho cheese sauce.", price: 13.99, featured: false, tags: ["Shareable"] },
+      { id: "pollo-loco", category: "Chicken", name: "Pollo Loco", description: "Grilled chicken breast with onions, rice, beans, pico de gallo, and tortillas.", price: 11.99, featured: false, tags: ["Chicken"] },
+      { id: "pollo-fundido", category: "Chicken", name: "Pollo Fundido", description: "Flour tortillas filled with chicken and topped with nacho cheese.", price: 10.99, featured: true, tags: ["Popular"] },
+      { id: "enchiladas-monte-alban", category: "Chicken", name: "Enchiladas Monte Alban", description: "Three shrimp enchiladas covered with green sauce and sour cream.", price: 11.99, featured: false, tags: ["Enchiladas"] },
+      { id: "carnitas", category: "Pork", name: "Carnitas", description: "Pork with rice and beans.", price: 11.99, featured: true, tags: ["Pork"] },
+      { id: "tacos-carnitas", category: "Pork", name: "Tacos de Carnitas", description: "Three corn tortillas filled with pork, served with rice and beans.", price: 11.99, featured: false, tags: ["Tacos"] },
+      { id: "burritos-sonora", category: "Pork", name: "Burritos Sonora", description: "Two burritos with carnitas, green sauce, nacho cheese, rice, and pico de gallo.", price: 11.99, featured: false, tags: ["Burrito"] },
+      { id: "camarones-diabla", category: "Seafood", name: "Camarones a la Diabla", description: "Deviled shrimp, grilled onions, lettuce, tomato, rice, and tortillas.", price: 13.99, featured: false, tags: ["Spicy"] },
+      { id: "tacos-pescado", category: "Seafood", name: "Tacos de Pescado", description: "Three tacos with grilled fish served with corn tortillas, rice, and tomato.", price: 11.99, featured: false, tags: ["Tacos"] },
+      { id: "camarones-monte-alban", category: "Seafood", name: "Camarones Monte Alban", description: "Grilled shrimp and onions topped with nacho cheese, rice, and salad.", price: 14.99, featured: true, tags: ["Seafood"] },
+      { id: "carne-asada", category: "Beef", name: "Carne Asada", description: "Thin cuts of grilled rib-eye with rice, beans, grilled onions, avocado, and tortillas.", price: 12.99, featured: true, tags: ["Beef"] },
+      { id: "steak-ranchero", category: "Beef", name: "Steak Ranchero", description: "T-bone steak fajita-style with cheese sauce, rice, beans, guacamole, and tortillas.", price: 13.49, featured: false, tags: ["Beef"] },
+      { id: "tacos-asada", category: "Beef", name: "Tacos de Asada", description: "Three corn tortillas with grilled tender beef, cilantro, rice, and beans.", price: 11.99, featured: false, tags: ["Tacos"] },
+      { id: "la-changa", category: "Beef", name: "La Changa", description: "Two fried burritos with shredded chicken or beef, topped with cheese and sauce.", price: 10.99, featured: false, tags: ["Burrito"] },
+      { id: "cazuelon", category: "Mixtos", name: "Cazuelón Dinner", description: "Grilled rib-eye, chicken breast, onions, and chorizo with rice, beans, pico, and tortillas.", price: 13.49, featured: true, tags: ["Mixed grill"] },
+      { id: "flautas", category: "Mixtos", name: "Flautas", description: "Four fried corn tortillas with beef, chicken, salad, and guacamole.", price: 9.49, featured: false, tags: ["Crispy"] },
+      { id: "monte-fiesta", category: "Mixtos", name: "Monte Fiesta", description: "Beans and chicken on nachos with small taco salad on the side.", price: 10.99, featured: false, tags: ["Nachos"] },
+      { id: "combo-two", category: "Combinations", name: "Two-Item Combination", description: "Choose two items with rice and beans. Options include taco, enchilada, burrito, tamale, tostada, and more.", price: 9.49, featured: false, tags: ["Combo"] },
+      { id: "flan", category: "Desserts", name: "Flan", description: "Classic Mexican-style custard dessert.", price: 3.69, featured: false, tags: ["Dessert"] },
+      { id: "fried-ice-cream", category: "Desserts", name: "Fried Ice Cream", description: "Sweet fried ice cream dessert.", price: 3.99, featured: false, tags: ["Dessert"] },
+      { id: "xango", category: "Desserts", name: "Xango Fried Cheesecake", description: "Fried cheesecake dessert.", price: 4.25, featured: true, tags: ["Dessert"] },
+      { id: "soft-drinks", category: "Drinks", name: "Soft Drinks", description: "Coke, Diet Coke, Sprite, Mr. Pibb, lemonade, iced tea, or coffee.", price: 2.19, featured: false, tags: ["Drink"] }
+    ];
+
+
+    const categoryPhotos = {
+      "Dips": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
+      "Appetizers": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
+      "Salads": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
+      "Quesadillas": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-3.jpg",
+      "Lunch": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-1.jpg",
+      "Fajitas": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-2.jpg",
+      "Specialties": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-5.jpg",
+      "Chicken": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
+      "Pork": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
+      "Seafood": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/2.jpg",
+      "Beef": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg",
+      "Mixtos": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
+      "Combinations": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-5.jpg",
+      "Desserts": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg",
+      "Drinks": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg"
+    };
+
+    const categories = ["All", ...Array.from(new Set(menuItems.map(item => item.category)))];
+    let activeCategory = "All";
+    let activeOrderType = "Pickup";
+    let searchTerm = "";
+    let cart = JSON.parse(localStorage.getItem("monteAlbanCart") || "{}");
+
+    const menuGrid = document.getElementById("menuGrid");
+    const categoryTabs = document.getElementById("categoryTabs");
+    const menuSearch = document.getElementById("menuSearch");
+    const clearSearch = document.getElementById("clearSearch");
+    const featuredList = document.getElementById("featuredList");
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const mobileCartCount = document.getElementById("mobileCartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const toast = document.getElementById("toast");
+    const cartDrawer = document.getElementById("cartDrawer");
+
+    const money = value => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+
+    function saveCart() {
+      localStorage.setItem("monteAlbanCart", JSON.stringify(cart));
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 2300);
+    }
+
+    function renderCategories() {
+      categoryTabs.innerHTML = categories.map(category => `
+        <button class="chip ${category === activeCategory ? "active" : ""}" data-category="${category}" type="button">${category}</button>
+      `).join("");
+
+      categoryTabs.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.category;
+          renderCategories();
+          renderMenu();
+        });
+      });
+    }
+
+    function filterItems() {
+      const term = searchTerm.trim().toLowerCase();
+      return menuItems.filter(item => {
+        const categoryMatch = activeCategory === "All" || item.category === activeCategory;
+        const termMatch = !term || [item.name, item.description, item.category, ...(item.tags || [])].join(" ").toLowerCase().includes(term);
+        return categoryMatch && termMatch;
+      });
+    }
+
+    function renderMenu() {
+      const items = filterItems();
+      if (!items.length) {
+        menuGrid.innerHTML = `<div class="feature-card" style="grid-column:1/-1;"><h3>No menu items found</h3><p>Try a different search term or category.</p></div>`;
+        return;
+      }
+
+      menuGrid.innerHTML = items.map(item => `
+        <article class="menu-item">
+          <div class="dish-top" data-category="${item.category}">
+            <img src="${categoryPhotos[item.category] || 'https://cdn.menu-world.net/monte-alban-mexican-restaurant/3.jpg'}" alt="${item.name} from Monte Alban menu" loading="lazy">
+          </div>
+          <div>
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <div class="badge-row">${(item.tags || []).map(tag => `<span class="badge">${tag}</span>`).join("")}</div>
+          </div>
+          <div class="menu-footer">
+            <span class="price">${money(item.price)}</span>
+            <button class="add-btn" type="button" aria-label="Add ${item.name}" data-add="${item.id}">+</button>
+          </div>
+        </article>
+      `).join("");
+
+      menuGrid.querySelectorAll("[data-add]").forEach(button => {
+        button.addEventListener("click", () => addToCart(button.dataset.add));
+      });
+    }
+
+    function renderFeatured() {
+      const featured = menuItems.filter(item => item.featured).slice(0, 14);
+      featuredList.innerHTML = featured.map(item => `
+        <div class="featured-item">
+          <div>
+            <h4>${item.name}</h4>
+            <p>${item.category} · <span class="price">${money(item.price)}</span></p>
+          </div>
+          <button class="add-btn" type="button" aria-label="Add ${item.name}" data-add="${item.id}">+</button>
+        </div>
+      `).join("");
+
+      featuredList.querySelectorAll("[data-add]").forEach(button => {
+        button.addEventListener("click", () => addToCart(button.dataset.add));
+      });
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      saveCart();
+      renderCart();
+      const item = menuItems.find(menuItem => menuItem.id === id);
+      showToast(`${item.name} added to cart`);
+    }
+
+    function updateQty(id, delta) {
+      const next = (cart[id] || 0) + delta;
+      if (next <= 0) delete cart[id];
+      else cart[id] = next;
+      saveCart();
+      renderCart();
+    }
+
+    function cartLines() {
+      return Object.entries(cart)
+        .map(([id, qty]) => ({ ...menuItems.find(item => item.id === id), qty }))
+        .filter(item => item.id);
+    }
+
+    function renderCart() {
+      const lines = cartLines();
+      const count = lines.reduce((sum, item) => sum + item.qty, 0);
+      const total = lines.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartCount.textContent = count;
+      mobileCartCount.textContent = count;
+      cartTotal.textContent = money(total);
+
+      if (!lines.length) {
+        cartItems.innerHTML = `<div class="empty-cart"><strong>Your cart is empty.</strong><br>Add items from the menu to start a pickup order.</div>`;
+        return;
+      }
+
+      cartItems.innerHTML = lines.map(item => `
+        <div class="cart-line">
+          <div class="cart-line-top">
+            <span>${item.name}</span>
+            <span>${money(item.price * item.qty)}</span>
+          </div>
+          <div class="qty-row">
+            <small>${item.category} · ${money(item.price)} each</small>
+            <div class="qty-control">
+              <button type="button" data-dec="${item.id}">−</button>
+              <strong>${item.qty}</strong>
+              <button type="button" data-inc="${item.id}">+</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      cartItems.querySelectorAll("[data-dec]").forEach(button => {
+        button.addEventListener("click", () => updateQty(button.dataset.dec, -1));
+      });
+      cartItems.querySelectorAll("[data-inc]").forEach(button => {
+        button.addEventListener("click", () => updateQty(button.dataset.inc, 1));
+      });
+    }
+
+    function openCart() {
+      document.body.classList.add("cart-open");
+      cartDrawer.setAttribute("aria-hidden", "false");
+    }
+
+    function closeCart() {
+      document.body.classList.remove("cart-open");
+      cartDrawer.setAttribute("aria-hidden", "true");
+    }
+
+    document.getElementById("openCart").addEventListener("click", openCart);
+    document.getElementById("mobileCart").addEventListener("click", openCart);
+    document.getElementById("closeCart").addEventListener("click", closeCart);
+    document.getElementById("cartBackdrop").addEventListener("click", closeCart);
+
+    document.getElementById("orderTypeButtons").addEventListener("click", event => {
+      if (!event.target.matches("button")) return;
+      activeOrderType = event.target.dataset.type;
+      document.querySelectorAll("#orderTypeButtons .chip").forEach(button => button.classList.toggle("active", button === event.target));
+      showToast(`${activeOrderType} selected`);
+    });
+
+    menuSearch.addEventListener("input", () => {
+      searchTerm = menuSearch.value;
+      renderMenu();
+    });
+
+    clearSearch.addEventListener("click", () => {
+      menuSearch.value = "";
+      searchTerm = "";
+      activeCategory = "All";
+      renderCategories();
+      renderMenu();
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const lines = cartLines();
+      if (!lines.length) {
+        showToast("Add items before submitting.");
+        return;
+      }
+
+      const form = new FormData(event.currentTarget);
+      const total = lines.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const orderNumber = `MA-${Date.now().toString().slice(-6)}`;
+      const summary = lines.map(item => `${item.qty}x ${item.name} (${money(item.price * item.qty)})`).join("\n");
+      const confirmation = [
+        `Order ${orderNumber}`,
+        `Type: ${activeOrderType}`,
+        `Name: ${form.get("customerName")}`,
+        `Phone: ${form.get("customerPhone")}`,
+        `Pickup: ${form.get("pickupTime")}`,
+        `Notes: ${form.get("orderNotes") || "None"}`,
+        "",
+        summary,
+        "",
+        `Estimated subtotal: ${money(total)}`,
+        "",
+        `Demo note: in production this order would send to Monte Alban through email, SMS, POS, or printer integration.`
+      ].join("\n");
+
+      alert(confirmation);
+      cart = {};
+      saveCart();
+      renderCart();
+      closeCart();
+      event.currentTarget.reset();
+      showToast("Demo order created");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderCategories();
+    renderFeatured();
+    renderMenu();
+    renderCart();
+  </script>
+</body>
+</html>
