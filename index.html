@@ -409,26 +409,6 @@
       border: 1px solid rgba(33,24,21,.08);
     }
 
-    .dish-top img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .dish-top::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 42%, rgba(33,24,21,.45));
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .dish-top::after {
-      z-index: 2;
-    }
-
     .pattern {
       height: 18px;
       background:
@@ -670,35 +650,6 @@
       display: grid;
       gap: .85rem;
       box-shadow: 0 18px 42px rgba(57,21,8,.07);
-    }
-
-    .dish-top {
-      min-height: 120px;
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 22% 34%, rgba(189,45,32,.8) 0 11%, transparent 12%),
-        radial-gradient(circle at 68% 42%, rgba(38,107,74,.84) 0 10%, transparent 11%),
-        radial-gradient(circle at 45% 68%, rgba(244,185,66,.9) 0 14%, transparent 15%),
-        radial-gradient(circle at 52% 50%, rgba(255,248,239,.88) 0 42%, transparent 43%),
-        linear-gradient(135deg, rgba(189,45,32,.16), rgba(240,111,45,.24));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dish-top::after {
-      content: attr(data-category);
-      position: absolute;
-      left: .75rem;
-      bottom: .75rem;
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(33,24,21,.08);
-      padding: .35rem .55rem;
-      border-radius: 999px;
-      font-size: .7rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-weight: 950;
-      color: var(--brand);
     }
 
     .menu-item h3 { margin: 0; font-size: 1.1rem; letter-spacing: -.025em; }
@@ -1347,25 +1298,6 @@
       { id: "soft-drinks", category: "Drinks", name: "Soft Drinks", description: "Coke, Diet Coke, Sprite, Mr. Pibb, lemonade, iced tea, or coffee.", price: 2.19, featured: false, tags: ["Drink"] }
     ];
 
-
-    const categoryPhotos = {
-      "Dips": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
-      "Appetizers": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
-      "Salads": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-4.jpg",
-      "Quesadillas": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-3.jpg",
-      "Lunch": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-1.jpg",
-      "Fajitas": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-2.jpg",
-      "Specialties": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-5.jpg",
-      "Chicken": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
-      "Pork": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
-      "Seafood": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/2.jpg",
-      "Beef": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg",
-      "Mixtos": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-6.jpg",
-      "Combinations": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-5.jpg",
-      "Desserts": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg",
-      "Drinks": "https://cdn.menu-world.net/monte-alban-mexican-restaurant/photo-7.jpg"
-    };
-
     const categories = ["All", ...Array.from(new Set(menuItems.map(item => item.category)))];
     let activeCategory = "All";
     let activeOrderType = "Pickup";
@@ -1428,9 +1360,6 @@
 
       menuGrid.innerHTML = items.map(item => `
         <article class="menu-item">
-          <div class="dish-top" data-category="${item.category}">
-            <img src="${categoryPhotos[item.category] || 'https://cdn.menu-world.net/monte-alban-mexican-restaurant/3.jpg'}" alt="${item.name} from Monte Alban menu" loading="lazy">
-          </div>
           <div>
             <h3>${item.name}</h3>
             <p>${item.description}</p>
